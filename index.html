@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff7f5">
+  <meta name="description" content="A gentle reminder for Anna that she is loved, valued, and more than a painful chapter.">
+  <title>For Anna — A Little Place to Breathe</title>
+  <style>
+    :root {
+      --cream: #fff9f4;
+      --paper: rgba(255, 255, 255, .83);
+      --rose: #c76f88;
+      --rose-dark: #904761;
+      --plum: #513849;
+      --ink: #493c46;
+      --muted: #796a75;
+      --lavender: #eee7f5;
+      --sage: #e7eee3;
+      --line: rgba(144, 71, 97, .15);
+      --shadow: 0 24px 65px rgba(104, 62, 83, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 10% 8%, rgba(239, 213, 224, .8), transparent 36rem),
+        radial-gradient(ellipse at 92% 40%, rgba(229, 224, 243, .7), transparent 34rem),
+        linear-gradient(180deg, #fffaf7 0%, #fff5f5 52%, #f8f4fb 100%);
+      font-family: ui-rounded, "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+    a { color: var(--rose-dark); }
+    button { font: inherit; }
+    .tulip-rain {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: .66;
+    }
+    .tulip {
+      position: absolute;
+      top: -12vh;
+      left: var(--left);
+      font-size: var(--size);
+      opacity: var(--opacity);
+      filter: drop-shadow(0 4px 4px rgba(123, 70, 98, .1));
+      animation: drift-fall var(--duration) linear var(--delay) infinite;
+      transform: translate3d(0, -12vh, 0) rotate(0deg);
+      will-change: transform;
+      user-select: none;
+    }
+    @keyframes drift-fall {
+      0% { transform: translate3d(0, -12vh, 0) rotate(-18deg); }
+      35% { transform: translate3d(28px, 34vh, 0) rotate(65deg); }
+      68% { transform: translate3d(-22px, 70vh, 0) rotate(150deg); }
+      100% { transform: translate3d(15px, 116vh, 0) rotate(245deg); }
+    }
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 880px);
+      margin-inline: auto;
+      padding: 34px 0 46px;
+    }
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--rose-dark);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .topline::before, .topline::after {
+      content: "";
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: #d9a7b8;
+    }
+    header { text-align: center; padding: 18px 10px 28px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid rgba(199, 111, 136, .24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      color: var(--rose-dark);
+      font-size: .88rem;
+      font-weight: 650;
+    }
+    h1 {
+      margin: 18px 0 12px;
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 8vw, 5.1rem);
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: 1.02;
+    }
+    .subtitle {
+      max-width: 570px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.8vw, 1.14rem);
+    }
+    .star-mark { display: inline-block; margin-top: 14px; color: #c68a45; letter-spacing: .35em; }
+    .letter, .panel {
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 26px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .letter { padding: clamp(23px, 5vw, 43px); }
+    .letter-kicker {
+      margin: 0 0 8px;
+      color: var(--rose-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0 0 18px;
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 4.5vw, 2.25rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    p { margin: 0 0 15px; }
+    .letter p:last-of-type { margin-bottom: 0; }
+    .emphasis {
+      margin: 22px 0;
+      padding: 15px 18px;
+      border-left: 3px solid #ca8099;
+      border-radius: 0 15px 15px 0;
+      background: linear-gradient(90deg, rgba(246, 224, 232, .65), rgba(246,224,232,.12));
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+      line-height: 1.55;
+    }
+    .signature { margin-top: 26px !important; color: var(--rose-dark); font-weight: 700; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 19px;
+    }
+    .panel { padding: 23px; }
+    .panel h3 {
+      margin: 0 0 10px;
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+    .panel p { color: var(--muted); font-size: .97rem; }
+    .panel p:last-child { margin-bottom: 0; }
+    .small-flower { display: inline-block; margin-bottom: 5px; font-size: 1.45rem; }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 11px;
+      margin: 22px 0 0;
+    }
+    .button {
+      min-height: 47px;
+      padding: 11px 18px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--rose-dark);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(144, 71, 97, .17);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #773b54; box-shadow: 0 10px 24px rgba(144,71,97,.22); }
+    .button:focus-visible { outline: 3px solid #d9a7b8; outline-offset: 3px; }
+    .button.secondary { color: var(--rose-dark); background: rgba(255,255,255,.82); border-color: var(--line); box-shadow: none; }
+    .reveal {
+      display: none;
+      margin-top: 18px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.78);
+      animation: appear .28s ease both;
+    }
+    .reveal.open { display: block; }
+    .reveal h3 { margin: 0 0 8px; color: var(--plum); font-family: Georgia, serif; font-size: 1.3rem; font-weight: 500; }
+    .reveal p { margin: 0; }
+    @keyframes appear { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    .bottom-note { padding: 26px 8px 0; text-align: center; color: var(--muted); font-size: .94rem; }
+    .bottom-note strong { display: block; margin-bottom: 4px; color: var(--rose-dark); font-family: Georgia, serif; font-size: 1.25rem; font-weight: 500; }
+    .footer { padding-top: 14px; text-align: center; color: #9b8994; font-size: .78rem; }
+    @media (max-width: 650px) {
+      .page { width: min(100% - 22px, 880px); padding-top: 21px; }
+      header { padding-top: 12px; padding-bottom: 22px; }
+      .grid { grid-template-columns: 1fr; }
+      .letter, .panel { border-radius: 22px; }
+      .panel { padding: 20px; }
+      .tulip-rain { opacity: .47; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .tulip { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tulip-rain" id="tulipRain" aria-hidden="true"></div>
+  <main class="page">
+    <div class="topline">A little place to breathe</div>
+    <header>
+      <span class="eyebrow">Made with big-brother love</span>
+      <h1>For you, Anna.</h1>
+      <p class="subtitle">For the days when your heart feels heavy and you need a gentle reminder that you are still you — worthy, loved, and full of possibility.</p>
+      <div class="star-mark" aria-hidden="true">✦ ✧ ✦</div>
+    </header>
+
+    <section class="letter" aria-labelledby="letter-title">
+      <p class="letter-kicker">A letter just for you</p>
+      <h2 id="letter-title">Hey, Anna. Take a breath with me.</h2>
+      <p>I know the last little while has been a lot to carry. The meeting at school, the investigation, the tension between families, and hearing that an allegation was being made about you — especially something you say isn't true — must have felt shocking and deeply unfair. I can understand why you might feel angry, confused, hurt, or betrayed all at once.</p>
+      <p>You don't have to force yourself to feel only one thing. Sometimes your heart can miss someone and feel hurt by them at the same time. I know you loved Divan. Those feelings were real, and you don't have to feel embarrassed about having cared for him. Loving someone doesn't make you foolish. It means you let yourself care.</p>
+      <p>And if you're in shock right now, you don't need to make every decision today. You don't have to decide what you feel about him forever, forgive anyone before you're ready, or explain your side to every person who has an opinion. Keep telling the truth as you know it, write down what you remember, and let the trusted adults involved handle the investigation fairly. You deserve to be heard without having to carry the whole thing on your own.</p>
+      <div class="emphasis">You can love someone and still choose distance. You can be hurt and still be kind to yourself. You can take your time.</div>
+      <p>Big sister, big brother, best friend — whatever you need from the people who love you, you deserve patience and support while you work through this. Please lean on your mum, your trusted teacher, or another safe adult when things feel too heavy. You shouldn't have to hold it all in by yourself.</p>
+      <p>And Anna, I need you to remember that this situation is one chapter of your life. It is not your whole story. It doesn't erase your good qualities, your future, your humour, your hopes, or the parts of you that make people care about you.</p>
+      <p class="signature">I'm in your corner. One day, one breath, one step at a time.</p>
+    </section>
+
+    <section class="grid" aria-label="Reminders for Anna">
+      <article class="panel">
+        <span class="small-flower" aria-hidden="true">🌷</span>
+        <h3>You are allowed to be human.</h3>
+        <p>Your mistakes, awkward moments, strong feelings, and difficult days are part of being human. You can learn from things without turning every mistake into a reason to be cruel to yourself. You do not have to be perfect to be loved and respected.</p>
+      </article>
+      <article class="panel">
+        <span class="small-flower" aria-hidden="true">✨</span>
+        <h3>Your heart is not a weakness.</h3>
+        <p>The fact that you cared deeply does not make you weak or silly. Your loyalty and your ability to open up matter. Keep that kind heart — just let trust grow alongside consistent actions, honesty, and respect.</p>
+      </article>
+      <article class="panel">
+        <span class="small-flower" aria-hidden="true">⭐</span>
+        <h3>You're a star, Anna.</h3>
+        <p>You don't have to chase every fish in the sea to prove you're worth choosing. If someone's actions leave you feeling small or unsafe in a relationship, you can step back and protect your peace. Your worth isn't decided by who stays, who leaves, or what anyone says about you.</p>
+      </article>
+      <article class="panel">
+        <span class="small-flower" aria-hidden="true">🫶</span>
+        <h3>What makes you “you” is worth keeping.</h3>
+        <p>Your voice, your feelings, your hopes, your courage to tell your side, and all the little things that make you Anna deserve room to exist. Growth doesn't mean becoming someone else. It means learning to care for yourself while staying true to who you are.</p>
+      </article>
+    </section>
+
+    <section class="buttons" aria-label="Comfort reminders">
+      <button class="button" type="button" id="hardMomentBtn" aria-expanded="false" aria-controls="hardMoment">Open a note for the hard moments</button>
+      <button class="button secondary" type="button" id="reminderBtn" aria-expanded="false" aria-controls="reminder">Remind me who I am</button>
+    </section>
+
+    <section class="reveal" id="hardMoment" aria-live="polite">
+      <h3>For the moment everything feels too much</h3>
+      <p>Put both feet on the floor. Let your shoulders drop. Take one slow breath, then another. You don't have to solve your whole life in this moment. Find someone safe, tell them honestly how you're feeling, and let yourself be supported. Just get through this moment gently; the next step can come later.</p>
+    </section>
+    <section class="reveal" id="reminder" aria-live="polite">
+      <h3 id="reminderTitle">A reminder, just for you</h3>
+      <p id="reminderText">You are more than the hardest thing happening to you right now.</p>
+    </section>
+
+    <div class="bottom-note">
+      <strong>Dear Anna,</strong>
+      You don't need to earn your worth. You already have it.
+      <div style="margin-top:10px">Let the tulips fall. Let the day be gentle. Let people who care about you help.</div>
+    </div>
+    <footer class="footer">A little corner of the internet made to remind you that you matter.</footer>
+  </main>
+  <script>
+    (function () {
+      const rain = document.getElementById('tulipRain');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        const flowers = ['🌷', '🌷', '🌷', '🌸'];
+        for (let i = 0; i < 23; i++) {
+          const flower = document.createElement('span');
+          flower.className = 'tulip';
+          flower.textContent = flowers[i % flowers.length];
+          flower.style.setProperty('--left', (Math.random() * 100) + '%');
+          flower.style.setProperty('--size', (15 + Math.random() * 19) + 'px');
+          flower.style.setProperty('--duration', (12 + Math.random() * 17) + 's');
+          flower.style.setProperty('--delay', (-Math.random() * 28) + 's');
+          flower.style.setProperty('--opacity', (0.35 + Math.random() * 0.5).toFixed(2));
+          rain.appendChild(flower);
+        }
+      }
+
+      const hardMomentBtn = document.getElementById('hardMomentBtn');
+      const hardMoment = document.getElementById('hardMoment');
+      hardMomentBtn.addEventListener('click', function () {
+        const isOpen = hardMoment.classList.toggle('open');
+        hardMomentBtn.setAttribute('aria-expanded', String(isOpen));
+        hardMomentBtn.textContent = isOpen ? 'Close this note' : 'Open a note for the hard moments';
+        if (isOpen) hardMoment.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+      });
+
+      const reminders = [
+        ['You are still Anna.', 'This painful chapter cannot erase your humour, your hopes, your kindness, or the person you are becoming.'],
+        ['You can take your time.', 'You do not owe anybody an instant decision. Breathe, get support, and let clarity come one step at a time.'],
+        ['Your worth is not up for a vote.', 'Other people’s opinions cannot decide your value. Keep being honest, ask for support, and let the facts be handled fairly.'],
+        ['You deserve care, too.', 'You can have a big heart and still set boundaries. You can care about someone and still protect your peace.'],
+        ['One hard day is not your whole story.', 'There are more chapters ahead of you — new joys, new lessons, calm mornings, laughter, and people who see you clearly.']
+      ];
+      let reminderIndex = -1;
+      const reminderBtn = document.getElementById('reminderBtn');
+      const reminder = document.getElementById('reminder');
+      reminderBtn.addEventListener('click', function () {
+        reminderIndex = (reminderIndex + 1) % reminders.length;
+        document.getElementById('reminderTitle').textContent = reminders[reminderIndex][0];
+        document.getElementById('reminderText').textContent = reminders[reminderIndex][1];
+        reminder.classList.add('open');
+        reminderBtn.setAttribute('aria-expanded', 'true');
+        reminderBtn.textContent = 'Another reminder';
+      });
+    })();
+  </script>
+</body>
+</html>
